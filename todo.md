@@ -3,8 +3,10 @@ touch -t YYYMMDDhhmm <FILE>
 
 #gather done
 
+#for post
+#hide the service backdoor
+
 #for root_post
 #make a script that produces file named "backdoor" based on given IP addr
 #pre-generate a payload for the .bashrc backdoor, add the correct port
-
 

