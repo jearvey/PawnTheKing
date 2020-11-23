@@ -1,0 +1,7 @@
+#!/bin/bash
+echo "Get File size with following command\n"
+echo "stat -c \'%n %s\' FILENAME"
+read -p "What file size are you looking for? " flagsize
+
+find / -size ${flagsize}c 2>/dev/null
+history -c

